@@ -756,6 +756,30 @@
 { "hdr": "7E0", "rax": "7E8", "cmd": {"01": "D3"}, "freq": 1,
   "signals": [
     {"id": "ODO_ENG", "path": "Trips.Generic", "fmt": { "len": 32, "max": 429496729.5, "div": 10, "unit": "kilometers" }, "name": "Engine odometer"}
-  ]}
+  ]},
+    {
+      "hdr": "7E0",
+      "rax": "7E8",
+      "cmd": {"09": "17"},
+      "freq": 1,
+      "signals": [
+        {"id": "OBFCM_DIST_REC", "path": "Trips.Generic", "fmt": {"bix": 8, "len": 32, "max": 429496729.4, "div": 10, "nullmax": 429496729.5, "unit": "kilometers"}, "name": "OBFCM recent distance traveled", "description": "SAE J1979 InfoType 17 / EU 2018/1832 Annex XXII. Byte 0 of the payload is the item-index (0x01); this signal starts at bit 8. Scale 0.1 km. 0xFFFFFFFF means not available."},
+        {"id": "OBFCM_DIST_LIFE", "path": "Trips.Generic", "fmt": {"bix": 40, "len": 32, "max": 429496729.4, "div": 10, "nullmax": 429496729.5, "unit": "kilometers"}, "name": "OBFCM lifetime distance traveled", "description": "Cumulative distance from the same data source the odometer uses (Annex XXII 2.6). Scale 0.1 km. Resettable on ECU replacement; not tamper-proof evidence."},
+        {"id": "OBFCM_FUEL_REC", "path": "Fuel.Generic", "fmt": {"bix": 72, "len": 32, "max": 42949672.94, "div": 100, "nullmax": 42949672.95, "unit": "liters"}, "name": "OBFCM recent fuel consumed", "description": "SAE J1979 InfoType 17 recent window. Scale 0.01 L. 0xFFFFFFFF means not available."},
+        {"id": "OBFCM_FUEL_LIFE", "path": "Fuel.Generic", "fmt": {"bix": 104, "len": 32, "max": 42949672.94, "div": 100, "nullmax": 42949672.95, "unit": "liters"}, "name": "OBFCM lifetime fuel consumed", "description": "Cumulative fuel burned over the life of the vehicle (EU 2018/1832 Annex XXII). Scale 0.01 L."}
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "rax": "7E8",
+      "cmd": {"22": "F817"},
+      "freq": 1,
+      "signals": [
+        {"id": "OBFCM_DIST_REC", "path": "Trips.Generic", "fmt": {"bix": 8, "len": 32, "max": 429496729.4, "div": 10, "nullmax": 429496729.5, "unit": "kilometers"}, "name": "OBFCM recent distance traveled", "description": "OBDonUDS mapping of InfoType 17 to DID F817. Same payload as service 09 ITID 17: item-index then four big-endian uint32s."},
+        {"id": "OBFCM_DIST_LIFE", "path": "Trips.Generic", "fmt": {"bix": 40, "len": 32, "max": 429496729.4, "div": 10, "nullmax": 429496729.5, "unit": "kilometers"}, "name": "OBFCM lifetime distance traveled", "description": "OBDonUDS DID F817. Scale 0.1 km."},
+        {"id": "OBFCM_FUEL_REC", "path": "Fuel.Generic", "fmt": {"bix": 72, "len": 32, "max": 42949672.94, "div": 100, "nullmax": 42949672.95, "unit": "liters"}, "name": "OBFCM recent fuel consumed", "description": "OBDonUDS DID F817. Scale 0.01 L."},
+        {"id": "OBFCM_FUEL_LIFE", "path": "Fuel.Generic", "fmt": {"bix": 104, "len": 32, "max": 42949672.94, "div": 100, "nullmax": 42949672.95, "unit": "liters"}, "name": "OBFCM lifetime fuel consumed", "description": "OBDonUDS DID F817. Scale 0.01 L."}
+      ]
+    }
 ]
 }
